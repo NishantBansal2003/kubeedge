@@ -14,9 +14,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 KUBEEDGE_ROOT=$PWD
 IMAGE_TAG=$(git describe --tags)
 CLOUD_EDGE_VERSION=${1:-"v1.15.1"}
+=======
+CLOUD_EDGE_VERSION=${1:-"v1.15.1"}
+KUBEEDGE_ROOT=$PWD
+>>>>>>> 79d317cae (Refactor keadm E2E shell script #5266)
+=======
+KUBEEDGE_ROOT=$PWD
+IMAGE_TAG=$(git describe --tags)
+CLOUD_EDGE_VERSION=${1:-"v1.15.1"}
+>>>>>>> e34f408f6 (Bug Fix in Refactor keadm E2E shell script #5266)
 
 source "${KUBEEDGE_ROOT}/hack/lib/install.sh"
 source "${KUBEEDGE_ROOT}/tests/scripts/keadm_common_e2e.sh"

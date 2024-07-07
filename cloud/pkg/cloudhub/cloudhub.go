@@ -112,7 +112,15 @@ func (ch *cloudHub) Start() {
 	close(DoneTLSTunnelCerts)
 
 	// generate Token
+<<<<<<< HEAD
+<<<<<<< HEAD
 	if err := httpserver.GenerateAndRefreshToken(ctx); err != nil {
+=======
+	if err := httpserver.GenerateAndRefresh(beehiveContext.GetContext()); err != nil {
+>>>>>>> a49e39584 (Merge branch 'kubeedge:master' into refactor/keadm-e2e-script)
+=======
+	if err := httpserver.GenerateAndRefreshToken(ctx); err != nil {
+>>>>>>> 4dd1721b3 (Merge branch 'kubeedge:master' into refactor/keadm-e2e-script)
 		klog.Exit(err)
 	}
 

@@ -14,6 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+KUBEEDGE_ROOT=$PWD
+IMAGE_TAG=$(git describe --tags)
+=======
+>>>>>>> 79d317cae (Refactor keadm E2E shell script #5266)
+KUBEEDGE_VERSION=$IMAGE_TAG
+=======
+>>>>>>> e34f408f6 (Bug Fix in Refactor keadm E2E shell script #5266)
 KUBEEDGE_ROOT=$PWD
 IMAGE_TAG=$(git describe --tags)
 KUBEEDGE_VERSION=$IMAGE_TAG

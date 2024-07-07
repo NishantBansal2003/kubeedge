@@ -15,7 +15,17 @@
 # limitations under the License.
 
 KUBEEDGE_ROOT=$PWD
+<<<<<<< HEAD
+<<<<<<< HEAD
 E2E_DIR=$(realpath $(dirname $0)/..)
+=======
+WORKDIR=$(dirname $0)
+E2E_DIR=$(realpath $(dirname $0)/..)
+IMAGE_TAG=$(git describe --tags)
+>>>>>>> 79d317cae (Refactor keadm E2E shell script #5266)
+=======
+E2E_DIR=$(realpath $(dirname $0)/..)
+>>>>>>> e34f408f6 (Bug Fix in Refactor keadm E2E shell script #5266)
 
 function build_ginkgo() {
   cd $E2E_DIR

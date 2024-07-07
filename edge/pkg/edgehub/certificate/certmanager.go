@@ -2,6 +2,15 @@ package certificate
 
 import (
 	"bytes"
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	"crypto/ecdsa"
+	"crypto/elliptic"
+	"crypto/rand"
+>>>>>>> a49e39584 (Merge branch 'kubeedge:master' into refactor/keadm-e2e-script)
+=======
+>>>>>>> 4dd1721b3 (Merge branch 'kubeedge:master' into refactor/keadm-e2e-script)
 	"crypto/tls"
 	"crypto/x509"
 	"crypto/x509/pkix"
@@ -22,7 +31,14 @@ import (
 	"github.com/kubeedge/kubeedge/common/constants"
 	"github.com/kubeedge/kubeedge/edge/pkg/edgehub/common/http"
 	"github.com/kubeedge/kubeedge/pkg/apis/componentconfig/edgecore/v1alpha2"
+<<<<<<< HEAD
+<<<<<<< HEAD
 	"github.com/kubeedge/kubeedge/pkg/security/certs"
+=======
+>>>>>>> a49e39584 (Merge branch 'kubeedge:master' into refactor/keadm-e2e-script)
+=======
+	"github.com/kubeedge/kubeedge/pkg/security/certs"
+>>>>>>> 4dd1721b3 (Merge branch 'kubeedge:master' into refactor/keadm-e2e-script)
 	"github.com/kubeedge/kubeedge/pkg/security/token"
 )
 
@@ -120,7 +136,18 @@ func (cm *CertManager) applyCerts() error {
 	if err != nil {
 		return fmt.Errorf("failed to save the CA certificate to file: %s, error: %v", cm.caFile, err)
 	}
+<<<<<<< HEAD
+<<<<<<< HEAD
 	certDER, keyDER, err := cm.GetEdgeCert(cm.certURL, pem.EncodeToMemory(caPem), tls.Certificate{}, realToken)
+=======
+
+	// get the edge.crt
+	caPem := pem.EncodeToMemory(&pem.Block{Bytes: cacert, Type: cert.CertificateBlockType})
+	pk, edgeCert, err := cm.GetEdgeCert(cm.certURL, caPem, tls.Certificate{}, realToken)
+>>>>>>> a49e39584 (Merge branch 'kubeedge:master' into refactor/keadm-e2e-script)
+=======
+	certDER, keyDER, err := cm.GetEdgeCert(cm.certURL, pem.EncodeToMemory(caPem), tls.Certificate{}, realToken)
+>>>>>>> 4dd1721b3 (Merge branch 'kubeedge:master' into refactor/keadm-e2e-script)
 	if err != nil {
 		return fmt.Errorf("failed to get edge certificate from the cloudcore, error: %v", err)
 	}
@@ -284,5 +311,27 @@ func (cm *CertManager) GetEdgeCert(url string, capem []byte, tlscert tls.Certifi
 	if res.StatusCode != nethttp.StatusOK {
 		return nil, nil, fmt.Errorf("failed to call http, code: %d, message: %s", res.StatusCode, string(content))
 	}
+<<<<<<< HEAD
+<<<<<<< HEAD
 	return content, pkw.DER(), nil
+=======
+
+	return pk, content, nil
+}
+
+func (cm *CertManager) getCSR() (*ecdsa.PrivateKey, []byte, error) {
+	pk, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+	if err != nil {
+		return nil, nil, err
+	}
+	csr, err := x509.CreateCertificateRequest(rand.Reader, cm.CR, pk)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return pk, csr, nil
+>>>>>>> a49e39584 (Merge branch 'kubeedge:master' into refactor/keadm-e2e-script)
+=======
+	return content, pkw.DER(), nil
+>>>>>>> 4dd1721b3 (Merge branch 'kubeedge:master' into refactor/keadm-e2e-script)
 }
